@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GWU Duquès Hall Reservation System</title>
+  <link rel="stylesheet" href="calendar.css">
+  <script>
+    // Redirect to the login page if nobody is logged in.
+    try {
+      if (!localStorage.getItem("userEmail") || !localStorage.getItem("userRole")) {
+        window.location.replace("loginpage.html");
+      }
+    } catch (e) {
+      window.location.replace("loginpage.html");
+    }
+  </script>
+</head>
+<body>
+  <div class="topbar">
+    <span id="userInfo"></span>
+    <div id="admin-tools" hidden>
+      <button type="button" id="downloadBtn">Download Reservations</button>
+    </div>
+    <button type="button" id="logoutBtn">Log out</button>
+  </div>
+
+  <div class="room-rules">
+    <h1>Duquès Hall Study Room Policies</h1>
+    <p>
+      A GWorld card enabled for campus access is required for entrance to Duquès Hall.<br>
+      Access to the reservation software is only available using an @gwu.edu account.<br>
+      Rooms are available for reservation on a first come, first served basis.<br>
+      Reservations may be placed up to two weeks in advance.<br>
+      A student may place up to 2 hours of reservations each day.<br>
+      When not reserved, an open study room may be used by one or more people for study. If someone arrives with a reservation, the room must be vacated for their use immediately.<br>
+      Windows may not be covered for any reason. Anyone found inside a study room with the windows covered may be banned from future room reservations.
+    </p>
+  </div>
+
+  <div class="calendar-header">
+    <button type="button" id="prevBtn" aria-label="Previous day">&lt;</button>
+    <span id="dayDisplay" aria-live="polite"></span>
+    <button type="button" id="nextBtn" aria-label="Next day">&gt;</button>
+  </div>
+
+  <p id="message" class="message" role="status" hidden></p>
+
+  <div class="calendar-scroll">
+    <div class="calendar-grid" id="calendarGrid"></div>
+  </div>
+
+  <footer>
+    <p>For issues contact: <a href="mailto:facilities@gwu.edu">facilities@gwu.edu</a></p>
+  </footer>
+
+  <script src="calendar.js"></script>
+</body>
+</html>
